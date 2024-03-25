@@ -5,7 +5,7 @@ def number_spiral(row: int, col: int) -> int:
 
         1  | 2  | 9   | 10 | 25
         4  | 3  | 8   | 11 | 24
-        5  | 6  | 7   | 12 | 23    (3,1) -> (3,3)
+        5  | 6  | 7   | 12 | 23
         16 | 15 | 14  | 13 | 22    
         17 | 18 | 19  | 20 | 21
     """
@@ -18,21 +18,26 @@ def number_spiral(row: int, col: int) -> int:
     closest_diagonal_value = (max_index-1)**2 + max_index
     if row == col: 
         return closest_diagonal_value
+
     # Ahora podemos calcular el valor buscado
     # moviéndonos a través del brazo de la espiral en la 
     # dirección correcta
-    direction_pos_neg = None
-    if max_index % 2 == 0:
-        direction_pos_neg = -1
-    else: 
-        direction_pos_neg = 1
 
-    direction_row_col = None
-    if col > row:
-        direction_row_col = direction_pos_neg
-    else:
-        direction_row_col = -direction_pos_neg
-    direction = direction_row_col
+    direction = None
+    # Si el índice máximo es par...
+    if max_index % 2 == 0:
+        # La dirección del brazo es negativa
+        direction = -1
+    else: 
+        # Si no,
+        # La dirección del brazo es positiva
+        direction = 1
+    
+    # Si la columna es mayor que la fila, 
+    # hay que moverse a través de las filas.
+    if col < row:
+        direction = -direction
+
     return closest_diagonal_value + ((max_index - min_index) * direction)
 
 assert number_spiral(1, 1) == 1, number_spiral(1, 1)
@@ -43,6 +48,9 @@ assert number_spiral(1, 2) == 2, number_spiral(1, 2)
 assert number_spiral(2, 2) == 3, number_spiral(2, 2)
 assert number_spiral(3, 2) == 6, number_spiral(3, 2)
 assert number_spiral(4, 2) == 15, number_spiral(4, 2)
+
+assert number_spiral(4, 3) == 14, number_spiral(4, 3)
+assert number_spiral(1, 3) == 9, number_spiral(1, 3)
 
 print("Todas las pruebas pasaron")
 
