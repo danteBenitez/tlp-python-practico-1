@@ -50,7 +50,9 @@ def palindrome_reorder(string: str):
 
             # Nos movemos por la lista aumentando el índice
             palindrome_list_index += 1
-
+    
+    # Si encontramos un carácter de frecuencia impar
+    # lo colocamos en el medio.
     if middle_char:
         palindrome_list[length // 2] = middle_char
 
