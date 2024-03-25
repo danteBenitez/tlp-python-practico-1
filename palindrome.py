@@ -5,7 +5,11 @@ def palindrome_reorder(string: str):
         retorna "NO SOLUTION".
     """
     length = len(string)
-    palindrome_list = [ "" for i in range(length) ]
+    # Una lista de caracteres que se convertirán en el palííndromo
+    # resultante. Usamos una lista por la facilidad para modificarla
+    # por índice.
+    palindrome_list = [""] * length
+
     # Primero, relacionamos cada caracter de `string` 
     # con la cantidad de veces que aparece
     char_frequencies = {}
@@ -14,12 +18,17 @@ def palindrome_reorder(string: str):
             char_frequencies[char] += 1
         else:
             char_frequencies[char] = 1
-
-    # Ahora, por cada carácter
+    
+    # Si hay algún carácter de frecuencia impar, 
+    # lo pondremos en el centro.
     middle_char = None
-    for i, char in enumerate(char_frequencies.keys()):
+    # Nuestra posición actual en el palíndromo
+    palindrome_list_index = 0
+    # Ahora, por cada carácter
+    for char in char_frequencies.keys():
+        freq = char_frequencies[char]
         # Si la frecuencia es impar
-        if char_frequencies[char] % 2 == 1:
+        if freq % 2 == 1:
             # Nos aseguramos de establecer
             # el caracter de en medio, de no existir
             if not middle_char :
@@ -30,8 +39,17 @@ def palindrome_reorder(string: str):
             # Por lo tanto, no se puede realizar un palíndromo.
                 return "NO SOLUTION"
         
-        palindrome_list[i] = char
-        palindrome_list[length - i - 1] = char
+        # Usamos la frecuencia de caracteres obtenida
+        # para agregar al palíndromo el mismo carácter
+        # la cantidad correcta de veces
+        for _ in range(freq // 2):
+            # Colocamos el mismo caractér en la posición
+            # actual, y en la posición opuesta.
+            palindrome_list[palindrome_list_index] = char
+            palindrome_list[length - palindrome_list_index - 1] = char
+
+            # Nos movemos por la lista aumentando el índice
+            palindrome_list_index += 1
 
     if middle_char:
         palindrome_list[length // 2] = middle_char
@@ -44,5 +62,6 @@ assert palindrome_reorder("neuqeun") == "neuquen", "Error en el caso de prueba"
 assert palindrome_reorder("bbcccaa") == "bcacacb", "Error en el caso de prueba"
 assert palindrome_reorder("anilnia") == "anilina", "Error en el caso de prueba"
 assert palindrome_reorder("asdasdsad") == "NO SOLUTION", "Error en el caso de prueba"
+assert palindrome_reorder("aabbbccc") == "NO SOLUTION", "Error en el caso de prueba"
 
 print("Todas las pruebas pasaron")
