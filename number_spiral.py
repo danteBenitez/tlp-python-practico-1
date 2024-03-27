@@ -34,8 +34,8 @@ def number_spiral(row: int, col: int) -> int:
         direction = 1
     
     # Si la fila es mayor que la columna, 
-    # hay que moverse a través de las filas,
-    # en dirección contraria a la del brazo.
+    # hay que moverse a través de las columnas,
+    # en dirección opuesta al brazo de la espiral
     if col < row:
         direction = -direction
 
