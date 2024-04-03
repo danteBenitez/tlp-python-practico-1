@@ -36,7 +36,7 @@ Retornar el número que falta.
 - Caso de prueba:
 
 ```py
-assert missing_number(5, [1, 2, 4, 5]) == 3, "Error en el caso
+assert missing_number(5, [1, 2, 4, 5]) == 3, "Error en el caso de prueba"
 ```
 
 ## Ejercicio 3: “Number Spiral”
@@ -53,7 +53,7 @@ El segundo parámetro contiene la posición de la columna de la matriz espiral
 Retornar el valor de la matriz en la posición seleccionada.
 - Caso de prueba:
 ```py
-assert number_spiral(2, 2) == 25, "Error en el caso de
+assert number_spiral(2, 2) == 25, "Error en el caso de prueba"
 ```
 
 ## Ejercicio 4: “Palindrome Reorder”
@@ -69,5 +69,5 @@ cadena de entrada. Si no es posible formar un palíndromo, retorna "NO SOLUTION"
 - Caso de prueba:
 
 ```py
-assert palindrome_reorder("aabbc") == "abcba"
+assert palindrome_reorder("aabbc") == "abcba", "Error en el caso de prueba"
 ```
